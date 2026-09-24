@@ -1,0 +1,35 @@
+name: Test formulae
+
+# Installs, tests and audits every formula on the platforms OwnGit ships for.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, ubuntu-24.04-arm]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@848c272c7bfe984a197bd4d16383f4c106ec61e6 # main 2026-09-18
+
+      - name: Style
+        run: brew style "${{ github.repository }}"
+
+      - name: Install
+        run: brew install --verbose "${{ github.repository_owner }}/tap/owngit"
+
+      - name: Test
+        run: brew test --verbose "${{ github.repository_owner }}/tap/owngit"
+
+      - name: Audit
+        run: brew audit --strict --online "${{ github.repository_owner }}/tap/owngit"
