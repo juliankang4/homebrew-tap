@@ -6,6 +6,8 @@ class Owngit < Formula
   version "1.0.2"
   license "MIT"
 
+  depends_on "git"
+
   on_macos do
     on_arm do
       url "https://github.com/juliankang4/owngit/releases/download/v1.0.2/owngit_1.0.2_darwin_arm64.tar.gz"
@@ -23,8 +25,6 @@ class Owngit < Formula
       sha256 "8c3ac42ccee25791b9646a61c5b889522ade422f7c0a620e4ca7f09e74fc20db"
     end
   end
-
-  depends_on "git"
 
   def install
     bin.install "owngit"
