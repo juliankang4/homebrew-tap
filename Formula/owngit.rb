@@ -3,7 +3,6 @@
 class Owngit < Formula
   desc "Private Git storage and browser dashboard on your own computer"
   homepage "https://github.com/juliankang4/owngit"
-  version "1.0.2"
   license "MIT"
 
   depends_on "git"
