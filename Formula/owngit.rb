@@ -9,19 +9,19 @@ class Owngit < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.1/owngit_1.1.1_darwin_arm64.tar.gz"
-      sha256 "44415f236ea2464825d43751969020c85e8a49645a5a290bc316366e12e13722"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.2/owngit_1.1.2_darwin_arm64.tar.gz"
+      sha256 "827306307ee9ef3b1ba586ef0074729789e792fa7bd2f0290f4b61c3cc3af116"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.1/owngit_1.1.1_linux_amd64.tar.gz"
-      sha256 "7152d6eddb4b425167d76b493827478f918034a4ba938c19ecfcaa2ac5b1fe04"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.2/owngit_1.1.2_linux_amd64.tar.gz"
+      sha256 "2a5d2080ba8f8fb8b12d50f7a9436ec7f604ed4305aedc6a8faef8dc31b5be4c"
     end
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.1/owngit_1.1.1_linux_arm64.tar.gz"
-      sha256 "e7af1e26857ff4c57b88ac4a97a6452162b06196462108eaad139050ed869a21"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.2/owngit_1.1.2_linux_arm64.tar.gz"
+      sha256 "e257a501c14f27f15a8dc0015f40288dde37736b8216aef25bd6dfba6e224beb"
     end
   end
 
@@ -31,12 +31,23 @@ class Owngit < Formula
     prefix.install "THIRD_PARTY_NOTICES"
   end
 
-  # The first start writes the setup file path to this log.
+  # launchd would create the service's output file readable by everyone, so
+  # it is created first, for the owner only, as owngit creates its log.
+  def post_install
+    (var/"log").mkpath
+    touch var/"log/owngit.stderr.log"
+    chmod 0600, var/"log/owngit.stderr.log"
+  end
+
+  # The server log, where the first start writes the setup file path, is
+  # var/log/owngit.log, which owngit keeps below 10 MiB with one older file
+  # beside it. The service's own output holds only what the log cannot,
+  # such as a crash report.
   service do
-    run [opt_bin/"owngit", "serve", "-no-open"]
+    run [opt_bin/"owngit", "serve", "-no-open", "--log-file", var/"log/owngit.log", "--service"]
     keep_alive true
-    log_path var/"log/owngit.log"
-    error_log_path var/"log/owngit.log"
+    log_path var/"log/owngit.stderr.log"
+    error_log_path var/"log/owngit.stderr.log"
   end
 
   test do
