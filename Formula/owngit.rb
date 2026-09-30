@@ -9,24 +9,27 @@ class Owngit < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.2/owngit_1.1.2_darwin_arm64.tar.gz"
-      sha256 "827306307ee9ef3b1ba586ef0074729789e792fa7bd2f0290f4b61c3cc3af116"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.3/owngit_1.1.3_darwin_arm64.tar.gz"
+      sha256 "aa53e6312d7b77f177a7a920188838fa70d9a678c1f5c43f7dd7d6fdec0fd3c9"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.2/owngit_1.1.2_linux_amd64.tar.gz"
-      sha256 "2a5d2080ba8f8fb8b12d50f7a9436ec7f604ed4305aedc6a8faef8dc31b5be4c"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.3/owngit_1.1.3_linux_amd64.tar.gz"
+      sha256 "d696cca28c459c199f36c51f3c73ad98771318942a99a9bf9560e306447e07bb"
     end
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.2/owngit_1.1.2_linux_arm64.tar.gz"
-      sha256 "e257a501c14f27f15a8dc0015f40288dde37736b8216aef25bd6dfba6e224beb"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.3/owngit_1.1.3_linux_arm64.tar.gz"
+      sha256 "9da6bc546f0cc0a8b4db71a48908e4b7027ad43c8cb362458760e4fc69ac7c42"
     end
   end
 
   def install
     bin.install "owngit"
+    # OwnGit.app, the menu bar icon, next to the bin folder of the program;
+    # "owngit service install" opens it from there.
+    prefix.install "OwnGit.app" if OS.mac?
     prefix.install "LICENSE"
     prefix.install "THIRD_PARTY_NOTICES"
   end
