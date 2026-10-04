@@ -9,19 +9,19 @@ class Owngit < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.3/owngit_1.1.3_darwin_arm64.tar.gz"
-      sha256 "aa53e6312d7b77f177a7a920188838fa70d9a678c1f5c43f7dd7d6fdec0fd3c9"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.4/owngit_1.1.4_darwin_arm64.tar.gz"
+      sha256 "5fda5d4a121c4b38f1b846ce9067c921d365ba575270cb941af8f523a180b86f"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.3/owngit_1.1.3_linux_amd64.tar.gz"
-      sha256 "d696cca28c459c199f36c51f3c73ad98771318942a99a9bf9560e306447e07bb"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.4/owngit_1.1.4_linux_amd64.tar.gz"
+      sha256 "e3dcaa79bae3fadea5b82c2b2d558f229edfba10577cd7fabfd92036c5b17146"
     end
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.3/owngit_1.1.3_linux_arm64.tar.gz"
-      sha256 "9da6bc546f0cc0a8b4db71a48908e4b7027ad43c8cb362458760e4fc69ac7c42"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.4/owngit_1.1.4_linux_arm64.tar.gz"
+      sha256 "fec883890e8035c97e6a7f432b0dcefc0624a6e995e3c68008bb78498b75b0c2"
     end
   end
 
@@ -49,6 +49,7 @@ class Owngit < Formula
   service do
     run [opt_bin/"owngit", "serve", "-no-open", "--log-file", var/"log/owngit.log", "--service"]
     keep_alive true
+    process_type :interactive
     log_path var/"log/owngit.stderr.log"
     error_log_path var/"log/owngit.stderr.log"
   end
