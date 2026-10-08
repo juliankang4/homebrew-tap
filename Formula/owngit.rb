@@ -11,19 +11,19 @@ class Owngit < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.5/owngit_1.1.5_darwin_arm64.tar.gz"
-      sha256 "aaee0f1db78520b75fd5915e2c7c567515641ab465f2ed46a092813cf43c7676"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.6/owngit_1.1.6_darwin_arm64.tar.gz"
+      sha256 "251300d0bc7d5880ba7a64bb2c5932d7023854cd154585ff108e492751b4cfdc"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.5/owngit_1.1.5_linux_amd64.tar.gz"
-      sha256 "f113fa85ab90b1917ef6e64b1165e7ed0c90396171ce429675e723b7000df0df"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.6/owngit_1.1.6_linux_amd64.tar.gz"
+      sha256 "e65f594790048483826a7a65585e40f3cbac8196eea3503f2d58f44020662b4e"
     end
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.5/owngit_1.1.5_linux_arm64.tar.gz"
-      sha256 "f9db5fd990f3b014bbca878f5453f88b04ba3feaf97ae6cfcc3b49a6cc89feec"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.6/owngit_1.1.6_linux_arm64.tar.gz"
+      sha256 "2e64578fbcd6f80cec5cac42d96f1afa8b28b1980c9d1792787e6960d90aa886"
     end
   end
 
