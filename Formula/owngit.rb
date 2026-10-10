@@ -11,26 +11,24 @@ class Owngit < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.7/owngit_1.1.7_darwin_arm64.tar.gz"
-      sha256 "d4bc2e40785d04f0f7dde40ecc4d03fea5729813441972744c6e891037c9bcb9"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.8/owngit_1.1.8_darwin_arm64.tar.gz"
+      sha256 "f618088161043bce020e097b0428bd3b97a54a55d9beb7b5014cb5a774de33ba"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.7/owngit_1.1.7_linux_amd64.tar.gz"
-      sha256 "8b723974bd84b4b5821a27ea6a7fdbb9c63fde6cf32f8d109d064f2cce8d22a0"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.8/owngit_1.1.8_linux_amd64.tar.gz"
+      sha256 "650c09cfdf626515f1e6ab9c09e91d41841edb68e8137d8cec8af080a4cbe601"
     end
     on_arm do
-      url "https://github.com/juliankang4/owngit/releases/download/v1.1.7/owngit_1.1.7_linux_arm64.tar.gz"
-      sha256 "83a1d50de0b1d8755f65efaff048e2a146d4ee78198f638022052d6cf3a5882f"
+      url "https://github.com/juliankang4/owngit/releases/download/v1.1.8/owngit_1.1.8_linux_arm64.tar.gz"
+      sha256 "fdd73a2d2f4666cf337b2e2c8d811646d7854ff417b1b0984a8b734783af11fd"
     end
   end
 
   def install
     bin.install "owngit"
-    # OwnGit.app, the menu bar icon, next to the bin folder of the program;
-    # "owngit service install" opens it from there.
     prefix.install "OwnGit.app" if OS.mac?
     prefix.install "LICENSE"
     prefix.install "THIRD_PARTY_NOTICES"
@@ -55,6 +53,19 @@ class Owngit < Formula
     process_type :interactive
     log_path var/"log/owngit.stderr.log"
     error_log_path var/"log/owngit.stderr.log"
+  end
+
+  def caveats
+    return unless OS.mac?
+
+    <<~EOS
+      The formula runs the owngit command and server without a menu bar icon.
+      To use the icon, install the matching cask app in /Applications:
+        brew install --cask juliankang4/tap/owngit
+      After a formula update, update the cask too:
+        brew upgrade --cask juliankang4/tap/owngit
+      Then run: owngit service install
+    EOS
   end
 
   test do
